@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- TextView to display time and meal type -->
+    <TextView
+        android:id="@+id/time_meal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time of Day: "
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <!-- Button to generate meal suggestion -->
+    <Button
+        android:id="@+id/suggest_meal_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suggest Meal"
+        android:layout_below="@id/time_meal_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <!-- TextView to display suggested meal -->
+    <TextView
+        android:id="@+id/meal_suggestion_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meal Suggestion: "
+        android:textSize="18sp"
+        android:layout_below="@id/suggest_meal_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+</RelativeLayout>
