@@ -1,0 +1,65 @@
+package com.example.mealsuggestionapp
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.Calendar
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var timeMealText: TextView
+    private lateinit var suggestMealBtn: Button
+    private lateinit var mealSuggestionText: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialize UI components
+        timeMealText = findViewById(R.id.time_meal_text)
+        suggestMealBtn = findViewById(R.id.suggest_meal_btn)
+        mealSuggestionText = findViewById(R.id.meal_suggestion_text)
+
+        // Set the current time and meal type
+        setTimeAndMealType()
+
+        // Suggest meal button click listener
+        suggestMealBtn.setOnClickListener {
+            suggestMeal()
+        }
+    }
+
+    // Method to set the current time and meal type
+    private fun setTimeAndMealType() {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        val mealType = when (hour) {
+            in 6..11 -> "Breakfast"
+            in 12..17 -> "Lunch"
+            else -> "Dinner"
+        }
+
+        timeMealText.text = "Time of Day: $mealType"
+    }
+
+    // Method to suggest a meal
+    private fun suggestMeal() {
+        val breakfastMeals = arrayOf("Pancakes", "Omelette", "Smoothie Bowl", "Avocado Toast")
+        val lunchMeals = arrayOf("Grilled Chicken Salad", "Pasta", "Burger", "Sushi")
+        val dinnerMeals = arrayOf("Steak", "Stir-Fry", "Pizza", "Tacos")
+
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        val meals = when (hour) {
+            in 6..11 -> breakfastMeals
+            in 12..17 -> lunchMeals
+            else -> dinnerMeals
+        }
+
+        val suggestedMeal = meals.random()
+        mealSuggestionText.text = "Meal Suggestion: $suggestedMeal"
+    }
+}
