@@ -7,6 +7,11 @@ android {
     namespace = "com.example.mockassignment"
     compileSdk = 35
 
+    buildFeatures{
+        viewBinding = false
+        
+    }
+
     defaultConfig {
         applicationId = "com.example.mockassignment"
         minSdk = 24
