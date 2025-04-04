@@ -1,5 +1,7 @@
 # IMAD5112Assignment1
 Assignment 1 of Introduction to Mobile Application Development
+Student No. ST10471605
+Name: Katlego Tsikoe
 
 This app was created using Android Studio
 Program language is Kotlin
