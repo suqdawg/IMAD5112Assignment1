@@ -50,6 +50,10 @@ Proper time cannot result in a meal suggestion because, hints will replace it th
 It is important to remember that the app has limited functionality and cannot switvh activity views.
 It is only one activity view with a user interface and minimal user experience.
 
+References
+
+Gemini Canvas (2025) Gemini experimental (Version 2.5 Pro) [Reiterated prompts per code]. https://gemini.google.com
+
 Screenshots
 ![Home](https://github.com/user-attachments/assets/df96f6fa-b097-48e9-9b9b-f8254d178f32) 
 (Home Page) This is the home page of the app.
