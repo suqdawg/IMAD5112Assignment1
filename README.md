@@ -15,7 +15,7 @@ How To Use App?
 Type time of day in the text box and recieve different meal choices based on time of day, e.g., 'morning' or 'breakfast.
 You can also type in time, e.g., 09:00 but theapp will handle this as an error and prompt you to correct your input.
 
-1. open app and iimediately add text input to the text bar
+1. open app and imediately add text input to the text bar
 2. insert "morning or breakfast" to get the morning meal suggestions.
 3. insert "lunch or afternoon" to get the lunch meal suggestions.
 4. insert "dinner or evening" to get dinner meal suggestions.
