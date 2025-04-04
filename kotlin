@@ -9,7 +9,6 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    //private late init var timeEditText: EditText
     private lateinit var searchButton: Button
     private lateinit var resetButton: Button
     private lateinit var resultTextView: TextView
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //timeEditText = findViewById<EditText>(R.id.timeEditText)
         searchButton = findViewById<Button>(R.id.searchButton)
         resetButton = findViewById<Button>(R.id.resetButton)
         resultTextView = findViewById<TextView>(R.id.resultTextView)
@@ -28,13 +26,9 @@ class MainActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
 
             Toast.makeText(this,"Searching", Toast.LENGTH_SHORT).show()
-
-            //val timeInput = timeEditText.text.toString().trim().lowercase()
-
+        
             val textInput :String = editTextText.text.toString().trim().lowercase()
-
-            //val mealSuggestion = suggestMeal(timeInput)
-
+    
             val mealSuggestion = suggestMeal(textInput)
 
             resultTextView.text = mealSuggestion
@@ -42,8 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         resetButton.setOnClickListener {
             Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show()
-
-            //timeEditText.text.clear()
 
             editTextText.text.clear()
 
