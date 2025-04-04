@@ -7,11 +7,14 @@ This app was created using Android Studio
 Program language is Kotlin
 Code is in .xml and .kt
 
+
 GitHub repository link
 https://github.com/suqdawg/IMAD5112Assignment1
 
+
 YouTube video link
 https://youtu.be/yeTjXjKKTG4
+
 
 How To Use App?
 Type time of day in the text box and recieve different meal choices based on time of day, e.g., 'morning' or 'breakfast.
