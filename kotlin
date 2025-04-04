@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
             input.contains("morning") || input.contains("breakfast")-> "Suggestion:\n\n1.\nEggs w/Toast\nand Bacon\n\n2.\nKellogs Cereal\nw/Low Fat Milk\n\n3.\nLow Sugar Muffin\nw/Black Coffee"
             input.contains("lunch") || input.contains("afternoon")-> "Suggestion:\n\n1.\nHam & Mayo\nSandwich\n\n2.\nGreen Salad\nw/Feta Cheese\n\n3.\nVegetable Soup\nw/Dry Bread"
             input.contains("dinner") || input.contains("evening") -> "Suggestion:\n\n1.\nRoasted Chicken\nw/Vegetable Stir-fry\n\nBeef Mince\nw/Macaroni &Sauce\n\nBrown Rice\nw/Boerewors\n&\nMushroom Sauce"
-            input.contains("Eggs")-> "Suggestion:\n\nFry 2 Eggs made with aromat\nToast 2 Brown Wholewheat Slices of\nBread\n\nFry 4 strips of Bacon\nno salt needed"
-            input.contains("Ham")-> "Suggestion:\n\nCut 2 Ham Slices\n&\nSpread Mayonnaise on your Sandwich\nand finish off with\nfruit juice"
-            input.contains("Chicken")-> "Suggestion:\n\nRoast a quarter leg\nof chicken in oven\n\nThrow vegetable\nstirfry into the pan\nadd greek sauce to\nfinish it off"
+            input.contains("eggs")-> "Suggestion:\n\nFry 2 Eggs made with aromat\nToast 2 Brown Wholewheat Slices of\nBread\n\nFry 4 strips of Bacon\nno salt needed"
+            input.contains("ham")-> "Suggestion:\n\nCut 2 Ham Slices\n&\nSpread Mayonnaise on your Sandwich\nand finish off with\nfruit juice"
+            input.contains("chicken")-> "Suggestion:\n\nRoast a quarter leg\nof chicken in oven\n\nThrow vegetable\nstirfry into the pan\nadd greek sauce to\nfinish it off"
 
             input.contains(":") -> {
                 try {
