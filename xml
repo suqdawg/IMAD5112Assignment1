@@ -17,8 +17,7 @@
         android:inputType="text"
         android:textColor="#FFFFFF"
         android:textColorHint="#CCCCCC"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#FFFFFF" app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.8" />
@@ -29,9 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Search Meal"
-        android:backgroundTint="#4CAF50"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/timeEditText"
+        android:backgroundTint="#4CAF50" android:textColor="#FFFFFF" app:layout_constraintTop_toBottomOf="@id/timeEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/resetButton"
         app:layout_constraintHorizontal_chainStyle="packed" />
@@ -42,9 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Reset"
-        android:backgroundTint="#F44336"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toTopOf="@id/searchButton"
+        android:backgroundTint="#F44336" android:textColor="#FFFFFF" app:layout_constraintTop_toTopOf="@id/searchButton"
         app:layout_constraintBottom_toBottomOf="@id/searchButton"
         app:layout_constraintStart_toEndOf="@id/searchButton"
         app:layout_constraintEnd_toEndOf="parent" />
