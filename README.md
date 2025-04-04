@@ -1,10 +1,12 @@
 # IMAD5112Assignment1
 Assignment 1 of Introduction to Mobile Application Development
 
-This app was created using Android Studio and most of the code written in this repo is in .xml and .kt
+This app was created using Android Studio
+Program language is Kotlin
+Code is in .xml and .kt
 
 GitHub repository link
-https://github.com/
+https://github.com/suqdawg/IMAD5112Assignment1
 
 YouTube video link
 https://youtu.be/yeTjXjKKTG4
