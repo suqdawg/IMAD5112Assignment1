@@ -7,11 +7,46 @@ GitHub repository link
 https://github.com/
 
 YouTube video link
-https://www.youtube.com/
+https://youtu.be/yeTjXjKKTG4
 
 How To Use App?
 Type time of day in the text box and recieve different meal choices based on time of day, e.g., 'morning' or 'breakfast.
 You can also type in time, e.g., 09:00 but theapp will handle this as an error and prompt you to correct your input.
+
+1. open app and iimediately add text input to the text bar
+2. insert "morning or breakfast" to get the morning meal suggestions.
+3. insert "lunch or afternoon" to get the lunch meal suggestions.
+4. insert "dinner or evening" to get dinner meal suggestions.
+5. insert "09:00 or 14:00 or 20:00 to get hints
+6. insert "eggs, ham or chicken" hints to get full preparation method for the 1st meal
+7. do not insert random number as the text result will be "invalid hour entered"
+8. do not insert random numbers as the text result will be "invalid hour entered" error
+9. any mispelled words will give you the "Couldn't recognise the time" error
+
+Suggestions
+morning
+breakfast
+lunch
+afternoon
+dinner
+evening
+(results in top 3 meal suggestions)
+
+Hints
+eggs
+ham
+chicken
+(results in top most easy to prepare method)
+
+Error Handling for Time input
+0-10 = eggs
+11-17 = ham
+18-23 = chicken
+
+Proper time cannot result in a meal suggestion because, hints will replace it then preparation methods take its place.
+
+It is important to remember that the app has limited functionality and cannot switvh activity views.
+It is only one activity view with a user interface and minimal user experience.
 
 Screenshots
 ![Home](https://github.com/user-attachments/assets/df96f6fa-b097-48e9-9b9b-f8254d178f32) 
