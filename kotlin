@@ -1,65 +1,114 @@
-package com.example.mealsuggestionapp
+package com.example.mealsuggester // Replace with your actual package name
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import java.util.Calendar
+import android.widget.Toast
+// No View Binding import needed
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var timeMealText: TextView
-    private lateinit var suggestMealBtn: Button
-    private lateinit var mealSuggestionText: TextView
+    // Declare variables for the views
+    private lateinit var timeEditText: EditText
+    private lateinit var searchButton: Button
+    private lateinit var resetButton: Button
+    private lateinit var resultTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Set the content view using the layout resource ID
         setContentView(R.layout.activity_main)
 
-        // Initialize UI components
-        timeMealText = findViewById(R.id.time_meal_text)
-        suggestMealBtn = findViewById(R.id.suggest_meal_btn)
-        mealSuggestionText = findViewById(R.id.meal_suggestion_text)
+        // Initialize the views using findViewById AFTER setContentView
+        // Note: We explicitly specify the type (e.g., <EditText>)
+        timeEditText = findViewById<EditText>(R.id.timeEditText)
+        searchButton = findViewById<Button>(R.id.searchButton)
+        resetButton = findViewById<Button>(R.id.resetButton)
+        resultTextView = findViewById<TextView>(R.id.resultTextView)
 
-        // Set the current time and meal type
-        setTimeAndMealType()
+        // Set OnClickListener for the Search Button
+        searchButton.setOnClickListener {
+            // Show "Searching" Toast immediately
+            Toast.makeText(this, "Searching", Toast.LENGTH_SHORT).show()
 
-        // Suggest meal button click listener
-        suggestMealBtn.setOnClickListener {
-            suggestMeal()
+            // Get the input text from the initialized EditText variable
+            val timeInput = timeEditText.text.toString().trim().lowercase()
+
+            // Determine the meal suggestion using the 'when' function
+            val mealSuggestion = suggestMeal(timeInput)
+
+            // Display the suggestion in the initialized TextView variable
+            resultTextView.text = mealSuggestion
+        }
+
+        // Set OnClickListener for the Reset Button
+        resetButton.setOnClickListener {
+            // Show "Reset" Toast
+            Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show()
+
+            // Clear the EditText using the initialized variable
+            timeEditText.text.clear()
+
+            // Clear the result TextView using the initialized variable
+            resultTextView.text = "Meal suggestion will appear here."
         }
     }
 
-    // Method to set the current time and meal type
-    private fun setTimeAndMealType() {
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+    /**
+     * Suggests a meal based on the time input string.
+     * This function uses a 'when' statement for cleaner logic.
+     * It handles simple text inputs and attempts basic time parsing.
+     */
+    private fun suggestMeal(input: String): String {
+         // Use 'when' as an expression for concise logic
+         return when {
+            // Handle empty input
+            input.isEmpty() -> "Please enter time (e.g., morning, 09:00)."
 
-        val mealType = when (hour) {
-            in 6..11 -> "Breakfast"
-            in 12..17 -> "Lunch"
-            else -> "Dinner"
+            // Handle simple text inputs
+            input.contains("morning") -> "Suggestion: Breakfast e.g., Eggs, Toast, Cereal"
+            input.contains("noon") || input.contains("afternoon") -> "Suggestion: Lunch (e.g., Sandwich, Salad, Soup)"
+            input.contains("evening") || input.contains("night") -> "Suggestion: Dinner (e.g., Chicken, Pasta, Rice)"
+
+            // Try to parse time (basic example: assumes HH:MM format)
+            input.contains(":") -> {
+                try {
+                    // Extract the hour part before the colon
+                    val hourString = input.substringBefore(":")
+                    val hour = hourString.toInt() // Convert the hour part to an integer
+                    // Nested 'when' for hour ranges
+                    when (hour) {
+                        in 0..10 -> "Suggestion: Breakfast" // Up to 10:59 AM
+                        in 11..16 -> "Suggestion: Lunch"    // 11:00 AM to 4:59 PM
+                        in 17..23 -> "Suggestion: Dinner"   // 5:00 PM to 11:59 PM
+                        else -> "Invalid hour entered (0-23)."
+                    }
+                } catch (e: Exception) {
+                    // Handle cases where parsing fails (e.g., "abc:def", empty string before ":")
+                    "Invalid time format. Use HH:MM or words like 'morning'."
+                }
+            }
+
+            // Handle integer input as hour (basic)
+            input.toIntOrNull() != null -> {
+                 try {
+                    val hour = input.toInt()
+                    // Nested 'when' for hour ranges
+                    when (hour) {
+                        in 0..10 -> "Suggestion: Breakfast"
+                        in 11..16 -> "Suggestion: Lunch"
+                        in 17..23 -> "Suggestion: Dinner"
+                        else -> "Invalid hour entered (0-23)."
+                    }
+                } catch (e: Exception) {
+                     "Invalid input." // Should be caught by toIntOrNull, but good practice
+                }
+            }
+
+            // Default case for unrecognized input
+            else -> "Couldn't recognize the time. Try 'morning', 'afternoon', 'evening', or HH:MM format."
         }
-
-        timeMealText.text = "Time of Day: $mealType"
-    }
-
-    // Method to suggest a meal
-    private fun suggestMeal() {
-        val breakfastMeals = arrayOf("Pancakes", "Omelette", "Smoothie Bowl", "Avocado Toast")
-        val lunchMeals = arrayOf("Grilled Chicken Salad", "Pasta", "Burger", "Sushi")
-        val dinnerMeals = arrayOf("Steak", "Stir-Fry", "Pizza", "Tacos")
-
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-
-        val meals = when (hour) {
-            in 6..11 -> breakfastMeals
-            in 12..17 -> lunchMeals
-            else -> dinnerMeals
-        }
-
-        val suggestedMeal = meals.random()
-        mealSuggestionText.text = "Meal Suggestion: $suggestedMeal"
     }
 }
