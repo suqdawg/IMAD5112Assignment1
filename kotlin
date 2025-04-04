@@ -1,114 +1,99 @@
-package com.example.mealsuggester // Replace with your actual package name
+package com.example.mockassignment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-// No View Binding import needed
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    // Declare variables for the views
-    private lateinit var timeEditText: EditText
+    //private late init var timeEditText: EditText
     private lateinit var searchButton: Button
     private lateinit var resetButton: Button
     private lateinit var resultTextView: TextView
+    private lateinit var editTextText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Set the content view using the layout resource ID
         setContentView(R.layout.activity_main)
 
-        // Initialize the views using findViewById AFTER setContentView
-        // Note: We explicitly specify the type (e.g., <EditText>)
-        timeEditText = findViewById<EditText>(R.id.timeEditText)
+        //timeEditText = findViewById<EditText>(R.id.timeEditText)
         searchButton = findViewById<Button>(R.id.searchButton)
         resetButton = findViewById<Button>(R.id.resetButton)
         resultTextView = findViewById<TextView>(R.id.resultTextView)
+        editTextText = findViewById<EditText>(R.id.editTextText)
 
-        // Set OnClickListener for the Search Button
         searchButton.setOnClickListener {
-            // Show "Searching" Toast immediately
-            Toast.makeText(this, "Searching", Toast.LENGTH_SHORT).show()
 
-            // Get the input text from the initialized EditText variable
-            val timeInput = timeEditText.text.toString().trim().lowercase()
+            Toast.makeText(this,"Searching", Toast.LENGTH_SHORT).show()
 
-            // Determine the meal suggestion using the 'when' function
-            val mealSuggestion = suggestMeal(timeInput)
+            //val timeInput = timeEditText.text.toString().trim().lowercase()
 
-            // Display the suggestion in the initialized TextView variable
+            val textInput :String = editTextText.text.toString().trim().lowercase()
+
+            //val mealSuggestion = suggestMeal(timeInput)
+
+            val mealSuggestion = suggestMeal(textInput)
+
             resultTextView.text = mealSuggestion
         }
 
-        // Set OnClickListener for the Reset Button
         resetButton.setOnClickListener {
-            // Show "Reset" Toast
             Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show()
 
-            // Clear the EditText using the initialized variable
-            timeEditText.text.clear()
+            //timeEditText.text.clear()
 
-            // Clear the result TextView using the initialized variable
-            resultTextView.text = "Meal suggestion will appear here."
+            editTextText.text.clear()
+
+            resultTextView.text = "Meal suggestion will appear here"
+
         }
     }
 
-    /**
-     * Suggests a meal based on the time input string.
-     * This function uses a 'when' statement for cleaner logic.
-     * It handles simple text inputs and attempts basic time parsing.
-     */
     private fun suggestMeal(input: String): String {
-         // Use 'when' as an expression for concise logic
-         return when {
-            // Handle empty input
-            input.isEmpty() -> "Please enter time (e.g., morning, 09:00)."
+        return when {
+            input.isEmpty() -> "Please enter a time (e.g., morning, 14:00)."
 
-            // Handle simple text inputs
-            input.contains("morning") -> "Suggestion: Breakfast e.g., Eggs, Toast, Cereal"
-            input.contains("noon") || input.contains("afternoon") -> "Suggestion: Lunch (e.g., Sandwich, Salad, Soup)"
-            input.contains("evening") || input.contains("night") -> "Suggestion: Dinner (e.g., Chicken, Pasta, Rice)"
+            input.contains("morning") || input.contains("breakfast")-> "Suggestion:\n\n1.\nEggs w/Toast\nand Bacon\n\n2.\nKellogs Cereal\nw/Low Fat Milk\n\n3.\nLow Sugar Muffin\nw/Black Coffee"
+            input.contains("lunch") || input.contains("afternoon")-> "Suggestion:\n\n1.\nHam & Mayo\nSandwich\n\n2.\nGreen Salad\nw/Feta Cheese\n\n3.\nVegetable Soup\nw/Dry Bread"
+            input.contains("dinner") || input.contains("evening") -> "Suggestion:\n\n1.\nRoasted Chicken\nw/Vegetable Stir-fry\n\nBeef Mince\nw/Macaroni &Sauce\n\nBrown Rice\nw/Boerewors\n&\nMushroom Sauce"
+            input.contains("broke")-> "Suggestion:\n\nFry 2 Eggs made with aromat\nToast 2 Brown Wholewheat Slices of\nBread\n\nFry 4 strips of Bacon\nno salt needed"
+            input.contains("no cash")-> "Suggestion:\n\nCut 2 Ham Slices\n&\nSpread Mayonnaise on your Sandwich\nand finish off with\nfruit juice"
+            input.contains("late to cook")-> "Suggestion:\n\nRoast a quarter leg\nof chicken in oven\n\nThrow vegetable\nstirfry into the pan\nadd greek sauce to\nfinish it off"
 
-            // Try to parse time (basic example: assumes HH:MM format)
             input.contains(":") -> {
                 try {
-                    // Extract the hour part before the colon
-                    val hourString = input.substringBefore(":")
-                    val hour = hourString.toInt() // Convert the hour part to an integer
-                    // Nested 'when' for hour ranges
+                    val hour = input.split(":")[0].toInt()
                     when (hour) {
-                        in 0..10 -> "Suggestion: Breakfast" // Up to 10:59 AM
-                        in 11..16 -> "Suggestion: Lunch"    // 11:00 AM to 4:59 PM
-                        in 17..23 -> "Suggestion: Dinner"   // 5:00 PM to 11:59 PM
-                        else -> "Invalid hour entered (0-23)."
+                        in 0..10 -> "Need a hint?\ntype\n\n'broke'"
+                        in 11..16 -> "Need a hint?\ntype\n\n'no cash'"
+                        in 17..23 -> "Need a hint?\ntype\n\n'late to cook'"
+                        else -> "Invalid hour entered."
                     }
                 } catch (e: Exception) {
-                    // Handle cases where parsing fails (e.g., "abc:def", empty string before ":")
-                    "Invalid time format. Use HH:MM or words like 'morning'."
+                    "Invalid format.\nUse HH:MM or\n'Morning', 'Easy Breakfast'."
                 }
             }
 
-            // Handle integer input as hour (basic)
             input.toIntOrNull() != null -> {
-                 try {
+                try {
                     val hour = input.toInt()
-                    // Nested 'when' for hour ranges
-                    when (hour) {
-                        in 0..10 -> "Suggestion: Breakfast"
-                        in 11..16 -> "Suggestion: Lunch"
-                        in 17..23 -> "Suggestion: Dinner"
-                        else -> "Invalid hour entered (0-23)."
+                    when(hour) {
+                        in 0..10 -> "Need a hint?\ntype\n\n'broke'"
+                        in 11..16 -> "Need a hint?\ntype\n\n'no cash'"
+                        in 17..23 -> "Need a hint?\ntype\n\n'late to cook'"
+                        else -> "Invalid hour entered\n\n(type a number for hints)."
                     }
-                } catch (e: Exception) {
-                     "Invalid input." // Should be caught by toIntOrNull, but good practice
+                } catch (e:Exception) {
+                    "Invalid Input"
                 }
             }
 
-            // Default case for unrecognized input
-            else -> "Couldn't recognize the time. Try 'morning', 'afternoon', 'evening', or HH:MM format."
+            else -> "Couldn't recognise the time.\n\n(type a number for hints)."
+
+            }
         }
-    }
+
 }
